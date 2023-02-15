@@ -1,0 +1,77 @@
+
+
+PARTIE A : modélisation, analyse, simulation
+============================================
+
+Dans la premiere partie du stage, il est question de calculer à la main les
+modes normaux de formes simples, et d'arriver à les simuler avec une fonction
+écrite en Python.
+
+A.1.
+Étude analytique des modes normaux d'un intervalle ouvert, fermé, d'un cercle,
+d'un rectangle, d'un disque, d'une ellipse, d'un anneau, d'une sphère.
+Idéntifier dans quels cas on y trouve des modes normaux localisés.
+
+A.2.
+Étude algèbrique du problème discretisé dans le cas uni-dimensionnel et
+bi-dimensionnel séparable.  Il faut comprendre comment représenter un
+intervalle de taille arbitraire sur une discrétisation de résolution donnée (la
+taille de l'intervale n'est pas nécéssairement un multiple entier du pas de
+discrétisation).  Comparer les trois modèles habituels pour représenter un
+sous-domaine de forme arbitraire : grille fixe avec poids sur les arêtes,
+grille fixe avec poids sur els noeuds, grille de topologie fixe avec position
+arbitraire des noeuds.
+
+A.3.
+Simulation par ordinateur du spectre pour plusieurs cas simples.  Notamment, il
+faut voir à partir de quelle résolution (pas de discrétisation) on est capable
+de retrouver les comportements attendus selon (A.1).  Il faut donc répondre à
+la question : quelle résolution est nécéssaire pour modèler les N premiers
+éléments propres ?  Quel N a-t-on besoin pour voir apparaître les premiers
+modes "intéressants" ?
+
+A.4.
+Essayer et comparer au moins trois décompositions spéctrales accessibles en
+Python: linalg, cholmod, chu, ...  Étudier le temps de calcul, la précision, et
+la robustesse de chacune sur les domaines connus (notamment, jusqu'à quelle
+fréquence un même modèle discret tient).
+
+
+PARTIE B : optimisation et conception
+=====================================
+
+Dans la deuxième partie, on s'intéresse à la conception de formes dont les
+modes normaux sont localisés sur une partie pré-déterminée du domaine.  On
+modèle cette conception comme un problème d'optimisation.  Pour faire une
+descente de gradient, il faut savoir calculer les dérivées des éléments propres
+par rapport aux paramètres de forme.
+
+B.1.
+Calcul différentiel avec matrices.  Calculer les dérivées de fonctions
+matricielles usuelles : trace, déterminant, k-ième valeur propre, k-ième valeur
+singulière, k-ième vecteur propre, etc.  À noter que le calcul de ces dérivées
+et beaucoup plus simple que le calcul des éléments propres eux-mêmes.
+
+B.2.
+Implémentation d'une méthode d'optimisation "par force brute" : descente de
+gradient et recherche linéaire.
+
+B.3.
+Résolution numérique du problème spéctrale inverse: changer les paramètres de
+forme pour obtenir une forme avec les N premiers valeurs propres prescrits.
+
+B.4.
+Définition d'une énérgie qui force le k-ième mode normal a être localisé dans
+une partie du domaine.  Définition d'une énérgie qui force le k-ième mode
+normal à être localisé quelque part.  Implémentation de ces énérgies et leurs
+dérivées, puis optimisation par descente de gradient.
+
+B.5.
+Réponse à des questions qualitatives, en s'appuyant sur des expériences
+numériques : dans l'ouvert défini par toutes les formes possibles, est que les
+formes avec modes localisés sont rares?  sont-elles denses?  Si c'est le cas,
+il veut dire que l'on peut modifier très légérement une forme quelconque afin
+d'obtenir une forme avec un mode localisé.  Mais il veut dire aussi que la
+notion de localisation n'est pas stable numériquement.  C'est une question
+ouverte!
+
