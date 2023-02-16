@@ -20,7 +20,7 @@
 \thispagestyle{empty}
 
 {\bf
-	shape as points (choisir un bon titre!)
+	Résolution de l'équation de Poisson par réseaux de neurones
 }
 
 {\bf Encadrants}:\\
@@ -48,30 +48,30 @@ matrice~$B\in\mathrm{M}_{m,n}(\mathbf{R})$, et on doit trouver des
 ``poids''~$W\in\mathbf{R}^m$ tels
 que~$\mathrm{sp}_\mathbf{R}\left(B^T\mathrm{diag}(W)B\right)=\Sigma$.
 
-\setlength{\tabcolsep}{0pt}
-\begin{tabular}{ccccccccccc}
-	\includegraphics[width=0.093\linewidth]{f/marsmooth.png} &
-	\includegraphics[width=0.093\linewidth]{f/marbords.png} &
-	\includegraphics[width=0.093\linewidth]{f/marimba_v01.png} &
-	\includegraphics[width=0.093\linewidth]{f/marimba_v02.png} &
-	\includegraphics[width=0.093\linewidth]{f/marimba_v03.png} &
-	\includegraphics[width=0.093\linewidth]{f/marimba_v04.png} &
-	\includegraphics[width=0.093\linewidth]{f/marimba_v05.png} &
-	\includegraphics[width=0.093\linewidth]{f/marimba_v06.png} &
-	\includegraphics[width=0.093\linewidth]{f/marimba_v07.png} &
-	\includegraphics[width=0.093\linewidth]{f/marimba_v08.png} &
-	\includegraphics[width=0.093\linewidth]{f/marimba_v09.png} \\
-	$1\!\!1_\Omega$  & $W$ &
-	$\varphi_1$ &
-	$\varphi_2$ &
-	$\varphi_3$ &
-	$\varphi_4$ &
-	$\varphi_5$ &
-	$\varphi_6$ &
-	$\varphi_7$ &
-	$\varphi_8$ &
-	$\varphi_9$
-\end{tabular}
+%\setlength{\tabcolsep}{0pt}
+%\begin{tabular}{ccccccccccc}
+%	\includegraphics[width=0.093\linewidth]{f/marsmooth.png} &
+%	\includegraphics[width=0.093\linewidth]{f/marbords.png} &
+%	\includegraphics[width=0.093\linewidth]{f/marimba_v01.png} &
+%	\includegraphics[width=0.093\linewidth]{f/marimba_v02.png} &
+%	\includegraphics[width=0.093\linewidth]{f/marimba_v03.png} &
+%	\includegraphics[width=0.093\linewidth]{f/marimba_v04.png} &
+%	\includegraphics[width=0.093\linewidth]{f/marimba_v05.png} &
+%	\includegraphics[width=0.093\linewidth]{f/marimba_v06.png} &
+%	\includegraphics[width=0.093\linewidth]{f/marimba_v07.png} &
+%	\includegraphics[width=0.093\linewidth]{f/marimba_v08.png} &
+%	\includegraphics[width=0.093\linewidth]{f/marimba_v09.png} \\
+%	$1\!\!1_\Omega$  & $W$ &
+%	$\varphi_1$ &
+%	$\varphi_2$ &
+%	$\varphi_3$ &
+%	$\varphi_4$ &
+%	$\varphi_5$ &
+%	$\varphi_6$ &
+%	$\varphi_7$ &
+%	$\varphi_8$ &
+%	$\varphi_9$
+%\end{tabular}
 
 On va résoudre ce problème par force brute, en minimisant
 fonction~$W\mapsto\left\|\mathrm{sp}_\mathbf{R}\left(B^TWB\right)-\Sigma\right\|^2$
