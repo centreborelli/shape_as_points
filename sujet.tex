@@ -28,25 +28,20 @@ Rafael Grompone von Gioi \verb+<rafael.grompone@ens-paris-saclay.fr>+\\
 Enric Meinhardt-Llopis \verb+<enric.meinhardt@ens-paris-saclay.fr>+ 
 
 {\bf Contexte}\\
-:
+Trois techniques
+
+\begin{tabular}{ccc}
+	%\includegraphics[width=0.3\linewidth]{f/multigrid.png} &
+	\includegraphics[width=0.32\linewidth]{f/vcycle.png} &
+	\includegraphics[width=0.32\linewidth]{f/butterflies.png} &
+	\includegraphics[width=0.32\linewidth]{f/cunet.png} \\
+	Multigrid PDE solvers&
+	Sparse matrix factorisation &
+	U-net ConvNets
+\end{tabular}
 
 
 {\bf Objectif du stage}\\
-L'objectif de cet stage est trouver des formes~$\Omega$ pour lesquelles il y a
-des modes normaux localisés autour de deux points.
-Le problème direct, bien connu, consiste à trouver
-les premières fonctions propres du Laplacien sur un maillage décrivant la forme
-de l'objet.  En pratique, c'est le calcul du
-spectre~$\mathrm{sp}_{\mathbf{R}}(A)$ d'une matrice~$A$ symétrique définie
-positive.
-On s'intéresse au problème inverse: étant donné un maillage, comment faire
-varier la longueur des liens du maillage---la forme de l'objet---de façon que
-son spectre coïncide avec un spectre objectif souhaité?
-Matriciellement, on se donne un spectre
-objectif~$\Sigma\in\mathbf{R}^n$ et une structure de maillage décrite par une
-matrice~$B\in\mathrm{M}_{m,n}(\mathbf{R})$, et on doit trouver des
-``poids''~$W\in\mathbf{R}^m$ tels
-que~$\mathrm{sp}_\mathbf{R}\left(B^T\mathrm{diag}(W)B\right)=\Sigma$.
 
 %\setlength{\tabcolsep}{0pt}
 %\begin{tabular}{ccccccccccc}
@@ -72,20 +67,6 @@ que~$\mathrm{sp}_\mathbf{R}\left(B^T\mathrm{diag}(W)B\right)=\Sigma$.
 %	$\varphi_8$ &
 %	$\varphi_9$
 %\end{tabular}
-
-On va résoudre ce problème par force brute, en minimisant
-fonction~$W\mapsto\left\|\mathrm{sp}_\mathbf{R}\left(B^TWB\right)-\Sigma\right\|^2$
-avec des méthode d'optimisation modernes; notamment celles utilisées
-en~\emph{deep-learning}, pour lesquelles ce problème est d'une taille
-considérée petite.  Pour cela, il faut une implémentation de la
-fonction~$A\mapsto\mathrm{sp}_\mathbf R(A)$ que l'optimiseur puisse dériver
-localement.  C'est ici qu'il y aura la plupart du travail du stage, qui
-pourrait parfaitement être titré~\emph{``a differentiable implementaion of the
-eigenvalues computation''}.
-
-Si le stage amène à une conclusion positive, on pourra soumettre une
-publication (première!) sur l'application des méthodes de deep learning à la
-modélisation d'instruments musicaux.
 
 
 \vspace{-1.5em}
