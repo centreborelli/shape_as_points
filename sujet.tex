@@ -44,8 +44,8 @@ résultats de chaque couche sont intégrés sur une image à la résolution
 initiale.  Les réseaux U-Net, et plus en général les
 architectures du type~\emph{encoder-decoder}, sont une des briques de base du
 traitement d'images moderne; ils fournissent des résultats de l'état de l'art
-sur des problèmes de classification, segmentation et debruitage d'images (REF:
-U-Net).
+sur des problèmes de classification, segmentation et debruitage
+d'images~\cite{unet}.
 
 \begin{tabular}{ccc}
 	\sf\color{blue} Multigrid PDE solvers&
@@ -60,12 +60,15 @@ U-Net).
 Si on vise à résoudre l'équation de Poisson~$\Delta u = f$ dans un domaine
 rectangulaire, les deux premières techniques sont confondues; ceci vient du
 fait que la transformée de Fourier diagonalise l'opérateur Laplacien.
-L'article (REF: article), paru récemment et devenu célèbre dans la communauté
-de traiteurs de nuages de points, clôt le cercle en proposant un réseau
+%L'article ``Shape As Points: A Differentiable Poisson Solver''~\cite{sap}
+Un article~\cite{sap} paru récemment
+%, paru récemment et devenu célèbre dans la communauté
+%de traiteurs de nuages de points,
+clôt le cercle en proposant un réseau
 de neurones pyramidal pour résoudre l'équation de Poisson.
 Ce réseau, dit DPSR (Differentiable Poisson Surface Reconstruction) est ensuite
 utilisé comme brique différentiable pour plusieurs applications en modélisation
-de formes tridimensionnelles à partir de points isolés.
+de formes tridimensionnelles à partir de points isolés~\cite{psr}.
 %Plus concrètement, les auteurs développent un réseau de neurones DPSR
 %(Differentiable Poisson Surface Reconstruction) qui résout l'équation de
 %Poisson pour 
@@ -82,7 +85,8 @@ de formes tridimensionnelles à partir de points isolés.
 {\bf Objectif du stage}\\
 L'objectif du stage est de creuser le plus au fond possible sur cette
 correspondance triple entre factorisations creuses, méthodes multigrid, et
-réseaux de neurones pyramidaux.
+réseaux de neurones pyramidaux.  D'abord on lira les deux
+articles~\cite{psr,sap} fondationnels du sujet
 
 
 %\setlength{\tabcolsep}{0pt}
@@ -117,31 +121,45 @@ réseaux de neurones pyramidaux.
 \begin{thebibliography}{99}
 \vspace{-1em}
 {\scriptsize
-\bibitem{drum}
-	Kac, M..
-	{\it Can one hear the shape of a drum?}
-	The american mathematical monthly, (1966)
+\bibitem{psr}
+	Kazhdan, M., Bolitho, M., \& Hoppe, H.
+		{\it Poisson surface reconstruction.}
+		Eurographics Symp. on Geometry processing (2006).
+\bibitem{sap}
+	Peng, S., Jiang, C., Liao, Y., Niemeyer, M., Pollefeys, M., \& Geiger, A.
+		{\it Shape as points: A differentiable Poisson solver.}
+		Advances in Neural Information Processing Systems, (2021).
+		\hspace{2em}\url{https://pengsongyou.github.io/sap}
+\bibitem{unet}
+	Ronneberger, O., Fischer, P., \& Brox, T.
+		{\it U-net: Convolutional networks for biomedical image segmentation.}
+		MICCAI (2015).
 
-\bibitem{inverse}
-	Chu, M., \& Golub, G.
-	{\it Inverse eigenvalue problems: theory, algorithms, and
-	applications}, OUP (2005)
-
-\bibitem{localfun}
-	Nguyen, B. \& Grebenkov, D.~S.
-	{\it Localization of Laplacian eigenfunctions in circular, spherical
-	and elliptical domains}, SIAM J.  Appl. Math. (2019)
-
-\bibitem{geofun}
-	Grebenkov, D.~S.  \& Nguyen, B.
-	{\it Geometrical structure of Laplacian eigenfunctions},
-	SIAM Rev. (2013)
-
-\bibitem{backeigen}
-	Wang,~W., Dang,~Z., Hu,~Y., Fua,~P., Salzmann,~M.
-	{\it Backpropagation-Friendly Eigendecomposition},
-	NeurIPS (2019)
-
+%\bibitem{drum}
+%	Kac, M..
+%	{\it Can one hear the shape of a drum?}
+%	The american mathematical monthly, (1966)
+%
+%\bibitem{inverse}
+%	Chu, M., \& Golub, G.
+%	{\it Inverse eigenvalue problems: theory, algorithms, and
+%	applications}, OUP (2005)
+%
+%\bibitem{localfun}
+%	Nguyen, B. \& Grebenkov, D.~S.
+%	{\it Localization of Laplacian eigenfunctions in circular, spherical
+%	and elliptical domains}, SIAM J.  Appl. Math. (2019)
+%
+%\bibitem{geofun}
+%	Grebenkov, D.~S.  \& Nguyen, B.
+%	{\it Geometrical structure of Laplacian eigenfunctions},
+%	SIAM Rev. (2013)
+%
+%\bibitem{backeigen}
+%	Wang,~W., Dang,~Z., Hu,~Y., Fua,~P., Salzmann,~M.
+%	{\it Backpropagation-Friendly Eigendecomposition},
+%	NeurIPS (2019)
+%
 }
 \end{thebibliography}
 
