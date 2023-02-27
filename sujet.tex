@@ -5,6 +5,7 @@
 \usepackage[osf,sups]{Baskervaldx} % lining figures
 \usepackage[bigdelims,cmintegrals,vvarbb,baskervaldx]{newtxmath} % math font
 \usepackage{graphicx}
+\usepackage{xcolor}
 \usepackage{url,hyperref}
 
 % margins
@@ -25,19 +26,24 @@
 
 {\bf Encadrants}:\\
 Rafael Grompone von Gioi \verb+<rafael.grompone@ens-paris-saclay.fr>+\\
-Enric Meinhardt-Llopis \verb+<enric.meinhardt@ens-paris-saclay.fr>+ 
+Enric Meinhardt-Llopis \verb+<enric.meinhardt@ens-paris-saclay.fr>+
 
 {\bf Contexte}\\
-Trois techniques
+Il y a trois techniques en calcul numérique qui sont bien différentes, mais qui
+s'avèrent néanmoins formellement similaires.  D'abord, la {\bf factorisation}
+d'une matrice pleine comme produit d'un nombre petit de matrices creuses.
+C'est le cas par exemple de la Transformation de Fourier Rapide, où une matrice
+pleine de taille~$2^N\times2^N$ s'écrit comme produit de~$N$ matrices creuses.
+Seconde, les {\bf méthodes multigrid} pour la résolution d'EDP linéaires, 
 
 \begin{tabular}{ccc}
 	%\includegraphics[width=0.3\linewidth]{f/multigrid.png} &
 	\includegraphics[width=0.32\linewidth]{f/vcycle.png} &
 	\includegraphics[width=0.32\linewidth]{f/butterflies.png} &
 	\includegraphics[width=0.32\linewidth]{f/cunet.png} \\
-	Multigrid PDE solvers&
-	Sparse matrix factorisation &
-	U-net ConvNets
+	\sf\color{blue} Multigrid PDE solvers&
+	\sf\color{blue} Sparse matrix factorisation &
+	\sf\color{blue} U-net ConvNets\\
 \end{tabular}
 
 
