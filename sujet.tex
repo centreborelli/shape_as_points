@@ -3,7 +3,7 @@
 \usepackage[french]{babel}
 \usepackage{amsmath}
 \usepackage[osf,sups]{Baskervaldx} % lining figures
-\usepackage[bigdelims,cmintegrals,vvarbb,baskervaldx]{newtxmath} % math font
+\usepackage[bigdelims,cmintegrals,vvarbb,baskervaldx,frenchmath]{newtxmath} % math font
 \usepackage{graphicx}
 \usepackage{xcolor}
 \usepackage{url,hyperref}
@@ -40,32 +40,49 @@ discrétisation---échelles---ce qui permet une convergence considérablement pl
 rapide vers la solution globale.  Troisième, l'{\bf architecture U-Net} pour
 les réseaux de neurones à convolution, où la pyramide multi-échelle d'une image
 est analysée successivement par plusieurs couches convolutionnelles, puis les
-résultats de chaque couche sont intégrés sur une image de sortie à la résolution
-initiale.  Les réseaux de type U-Net sont une des briques de base du traitement
-d'images moderne, et ils fournissent des résultats de l'état de l'art sur des
-problèmes de classification, segmentation et debruitage d'images (REF: U-Net).
-
-Si on vise à résoudre l'équation de Poisson~$\Delta u = f$ dans un domaine
-rectangulaire, les deux premières techniques sont confondues, du au fait que la
-transformée de Fourier diagonalise l'opérateur Laplacien.
-L'article (REF: article), paru récemment et devenu célèbre dans la communauté
-de traiteurs de nuages de points, clôt le cercle en proposant un réseau U-Net
-pour résoudre l'équation de Poisson.
+résultats de chaque couche sont intégrés sur une image à la résolution
+initiale.  Les réseaux U-Net, et plus en général les
+architectures du type~\emph{encoder-decoder}, sont une des briques de base du
+traitement d'images moderne; ils fournissent des résultats de l'état de l'art
+sur des problèmes de classification, segmentation et debruitage d'images (REF:
+U-Net).
 
 \begin{tabular}{ccc}
 	\sf\color{blue} Multigrid PDE solvers&
 	\sf\color{blue} Sparse matrix factorisation &
-	\sf\color{blue} U-net ConvNets\\
+	\sf\color{blue} U-Net ConvNets\\
 	\includegraphics[width=0.3\linewidth]{f/multigrid.png} &
 	%\includegraphics[width=0.32\linewidth]{f/vcycle.png} &
 	\includegraphics[width=0.32\linewidth]{f/butterflies.png} &
 	\includegraphics[width=0.32\linewidth]{f/cunet.png} \\
 \end{tabular}
 
+Si on vise à résoudre l'équation de Poisson~$\Delta u = f$ dans un domaine
+rectangulaire, les deux premières techniques sont confondues; ceci vient du
+fait que la transformée de Fourier diagonalise l'opérateur Laplacien.
+L'article (REF: article), paru récemment et devenu célèbre dans la communauté
+de traiteurs de nuages de points, clôt le cercle en proposant un réseau
+de neurones pyramidal pour résoudre l'équation de Poisson.
+Ce réseau, dit DPSR (Differentiable Poisson Surface Reconstruction) est ensuite
+utilisé comme brique différentiable pour plusieurs applications en modélisation
+de formes tridimensionnelles à partir de points isolés.
+%Plus concrètement, les auteurs développent un réseau de neurones DPSR
+%(Differentiable Poisson Surface Reconstruction) qui résout l'équation de
+%Poisson pour 
+\\
+%Plus concrètement, l'étape d'entrainement utilise la donnée~$f$ pour ajuster
+%les poids des neurones, et l'inférence prend un point~$\mathrm{x}$ en entrée
+%et donne la valeur~$u(\mathrm{x})$ en sortie.
+\centerline{%
+	\includegraphics[width=0.8\linewidth]{f/pipeline_optim.png}%
+}
+
+
 
 {\bf Objectif du stage}\\
 L'objectif du stage est de creuser le plus au fond possible sur cette
-correspondance.  D'abord,
+correspondance triple entre factorisations creuses, méthodes multigrid, et
+réseaux de neurones pyramidaux.
 
 
 %\setlength{\tabcolsep}{0pt}
@@ -133,4 +150,4 @@ correspondance.  D'abord,
 \end{document}  
 
 
-% vim:set tw=79 spell spelllang=fr:
+% vim:set tw=79 spell spelllang=fr ts=2 sw=2:
