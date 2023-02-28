@@ -25,11 +25,11 @@
 }
 
 {\bf Encadrants}:\\
-Rafael Grompone von Gioi \verb+<rafael.grompone@ens-paris-saclay.fr>+\\
-Enric Meinhardt-Llopis \verb+<enric.meinhardt@ens-paris-saclay.fr>+
+Enric Meinhardt-Llopis \verb+<enric.meinhardt@ens-paris-saclay.fr>+\\
+Rafael Grompone von Gioi \verb+<rafael.grompone@ens-paris-saclay.fr>+
 
 {\bf Contexte}\\
-Il y a trois techniques en calcul numérique qui sont bien différentes, mais qui
+Il y a trois techniques en calcul numérique qui sont bien différents, mais qui
 s'avèrent néanmoins formellement similaires.  D'abord, la {\bf factorisation}
 d'une matrice pleine comme produit d'un nombre petit de matrices creuses.
 C'est le cas par exemple de la Transformation de Fourier Rapide, où une matrice
@@ -37,23 +37,24 @@ pleine de taille~$2^N\times2^N$ s'écrit comme produit de~$N$ matrices creuses.
 Seconde, les {\bf méthodes multigrid} pour la résolution d'une EDP, où la même
 équation est résolue successivement à différents pas de
 discrétisation---échelles---ce qui permet une convergence considérablement plus
-rapide vers la solution globale.  Troisième, l'{\bf architecture U-Net} pour
-les réseaux de neurones à convolution, où la pyramide multi-échelle d'une image
-est analysée successivement par plusieurs couches convolutionnelles, puis les
-résultats de chaque couche sont intégrés sur une image à la résolution
-initiale.  Les réseaux U-Net, et plus en général les
-architectures du type~\emph{encoder-decoder}, sont une des briques de base du
-traitement d'images moderne; ils fournissent des résultats de l'état de l'art
-sur des problèmes de classification, segmentation et debruitage
-d'images~\cite{unet}.
+rapide vers la solution globale.  Troisième, l'{\bf architecture
+U-Net}~\cite{unet} pour les réseaux de neurones à convolution, où la pyramide
+multi-échelle d'une image est analysée successivement par plusieurs couches
+convolutionnelles, puis les résultats de chaque couche sont intégrés sur une
+image à la résolution initiale.
+%Les réseaux U-Net, et plus en général les
+%architectures du type~\emph{encoder-decoder}, sont une des briques de base du
+%traitement d'images moderne; ils fournissent des résultats de l'état de l'art
+%sur des problèmes de classification, segmentation et debruitage
+%d'images~\cite{unet}.
 
 \begin{tabular}{ccc}
-	\sf\color{blue} Multigrid PDE solvers&
 	\sf\color{blue} Sparse matrix factorisation &
+	\sf\color{blue} Multigrid PDE solvers&
 	\sf\color{blue} U-Net ConvNets\\
-	\includegraphics[width=0.3\linewidth]{f/multigrid.png} &
 	%\includegraphics[width=0.32\linewidth]{f/vcycle.png} &
 	\includegraphics[width=0.32\linewidth]{f/butterflies.png} &
+	\includegraphics[width=0.3\linewidth]{f/multigrid.png} &
 	\includegraphics[width=0.32\linewidth]{f/cunet.png} \\
 \end{tabular}
 
@@ -66,12 +67,12 @@ Un article~\cite{sap} paru récemment
 %de traiteurs de nuages de points,
 clôt le cercle en proposant un réseau
 de neurones pyramidal pour résoudre l'équation de Poisson.
-Ce réseau, dit DPSR (Differentiable Poisson Surface Reconstruction) est ensuite
+Ce réseau, dit DPSR (Differentiable Poisson Surface Reconstruction), est ensuite
 utilisé comme brique différentiable pour plusieurs applications en modélisation
 de formes tridimensionnelles à partir de points isolés~\cite{psr}.
 %Plus concrètement, les auteurs développent un réseau de neurones DPSR
 %(Differentiable Poisson Surface Reconstruction) qui résout l'équation de
-%Poisson pour 
+%Poisson pour
 \\
 %Plus concrètement, l'étape d'entrainement utilise la donnée~$f$ pour ajuster
 %les poids des neurones, et l'inférence prend un point~$\mathrm{x}$ en entrée
@@ -85,15 +86,18 @@ de formes tridimensionnelles à partir de points isolés~\cite{psr}.
 {\bf Objectif du stage}\\
 L'objectif du stage est de creuser le plus au fond possible sur cette
 correspondance triple entre factorisations creuses, méthodes multigrid, et
-réseaux de neurones pyramidaux.  Plus concrètement, on vise à maitriser les les
-deux articles~\cite{psr,sap} fondationnels du sujet, et à prendre un peu de
-recul pour se poser et répondre---de façon théorique et expérimentelle---aux
-questions intéressantes que les auteurs originaux ne se posent pas:
-Est-ce que le solver de Poisson est utilisable pour d'autres applications de
-cette équation en traitement d'images?  Qu'est-ce que l'on y gagne/perd en
-remplaçant la nonlinearité du réseau par l'identité? Peut-on ``apprendre'' des
-factorisations creuses de matrices par cette technique?  Peut-on factoriser
-exactement l'opérateur Laplacien sur un domaine discret quelconque?
+réseaux de neurones pyramidaux.  Plus concrètement, on vise à maîtriser les
+deux articles~\cite{psr,sap} fondamentaux %fondationnels
+du sujet de façon théorique et expérimentale.
+%Plus concrètement, on vise à maitriser les les
+%deux articles~\cite{psr,sap} fondationnels du sujet, et à prendre un peu de
+%recul pour se poser et répondre---de façon théorique et expérimentelle---aux
+%questions intéressantes que les auteurs originaux ne se posent pas:
+%Est-ce que le solver de Poisson est utilisable pour d'autres applications de
+%cette équation en traitement d'images?  Qu'est-ce que l'on y gagne/perd en
+%remplaçant la nonlinearité du réseau par l'identité? Peut-on ``apprendre'' des
+%factorisations creuses de matrices par cette technique?  Peut-on factoriser
+%exactement l'opérateur Laplacien sur un domaine discret quelconque?
 
 
 %\setlength{\tabcolsep}{0pt}
