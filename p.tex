@@ -239,11 +239,11 @@ CONTEXTE: DISSONANCE VS CONSONANCE\\
 \end{frame}
 
 
-%SCRIPT cat <<END | gnuplot > f/beating.png
-%SCRIPT set term pngcairo crop size 800,400
-%SCRIPT set samples 10000
-%SCRIPT plot sin(10*x) + sin(10.5*x), 2*cos(0.25*x)
-%SCRIPT END
+%%SCRIPT cat <<END | gnuplot > f/beating.png
+%%SCRIPT set term pngcairo crop size 800,400
+%%SCRIPT set samples 10000
+%%SCRIPT plot sin(10*x) + sin(10.5*x), 2*cos(0.25*x)
+%%SCRIPT END
 
 \begin{frame}
 CONTEXTE: DISSONANCE VS CONSONANCE\\
@@ -266,16 +266,16 @@ superposition de deux ondes {\em pures} de fréquence très proche.
 \includegraphics[width=\linewidth]{f/beating.png}
 \end{frame}
 
-%SCRIPT cat <<END | gnuplot > f/nobeating.png
-%SCRIPT set term pngcairo crop size 800,250
-%SCRIPT set samples 10000
-%SCRIPT plot [-10:10] [-2.9:2.9] cos(10*x) + cos(20*x)
-%SCRIPT END
-%SCRIPT cat <<END | gnuplot > f/nobeating2.png
-%SCRIPT set term pngcairo crop size 800,250
-%SCRIPT set samples 10000
-%SCRIPT plot [-10:10] [-2.9:2.9] cos(10*x) + cos(20.5*x)
-%SCRIPT END
+%%SCRIPT cat <<END | gnuplot > f/nobeating.png
+%%SCRIPT set term pngcairo crop size 800,250
+%%SCRIPT set samples 10000
+%%SCRIPT plot [-10:10] [-2.9:2.9] cos(10*x) + cos(20*x)
+%%SCRIPT END
+%%SCRIPT cat <<END | gnuplot > f/nobeating2.png
+%%SCRIPT set term pngcairo crop size 800,250
+%%SCRIPT set samples 10000
+%%SCRIPT plot [-10:10] [-2.9:2.9] cos(10*x) + cos(20.5*x)
+%%SCRIPT END
 
 \begin{frame}
 CONTEXTE: DISSONANCE VS CONSONANCE\\
