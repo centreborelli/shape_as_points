@@ -76,6 +76,24 @@
 % 1. contexte: intersection de trois sujets
 % + objectifs du stage = (some fancy sexy words)
 
+%SCRIPT simpois -m f/jk.png  -f one:256x128 -i f/njk.png > f/a.npy
+%SCRIPT simpois -m f/njk.png -f one:256x128 -i f/njk.png > f/b.npy
+%SCRIPT plambda f/a.npy f/b.npy rot_-|plambda 'x fabs 1.5 ^ x x fabs / *'|upsa 2 2 |palette -400 400 nice -l OVERLAY|plambda - 'x[2] x[1] x[0] rgb' -o f/jkpois.png
+%SCRIPT blur l 2 f/jk.png|upsa 5 2|SRAND=5 plambda 'x,nn randg fabs * 0.115 <'|blur g 2|downsa v 3|qauto -p 1 - f/jkdots.png
+
+\begin{frame}
+OBJECTIF : RECONSTRUCTION D'UNE SURFACE À PARTIR DE POINTS
+==========================================================
+
+\begin{tabular}{cc}
+	\includegraphics[width=0.4\linewidth]{f/jkdots.png} &
+	\includegraphics[width=0.4\linewidth]{f/jkpois.png} \\
+	{\bf Entrée:} points bruités &
+	{\bf Sortie:} surface lisse \\
+\end{tabular}
+
+\end{frame}
+
 % 2. contexte: modèle de poisson pour nuages de points [ref 1]
 
 % 3. contexte: solution par dft
