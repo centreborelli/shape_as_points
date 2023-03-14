@@ -7,6 +7,7 @@
 \usepackage{bbm} % for blackboard 1
 
 \usepackage{graphicx}        % to include images
+\usepackage{graphbox}        % align option to includegraphics
 %\usepackage{animate}         % to include animated images
 \usepackage{soul}            % for colored strikethrough
 %\usepackage{bbding}          % for Checkmark and XSolidBrush
@@ -92,15 +93,111 @@ OBJECTIF: TROUVER UNE SURFACE À PARTIR DE POINTS
 	{\bf Sortie:} surface lisse \\
 \end{tabular}
 
+\pause
+\vfill
+\begin{columns}[c]
+	\begin{column}{0.5\textwidth}
+		\begin{center}
+			\[
+				\begin{cases}
+					\Delta u(\mathbf{x})=1&\color{gray}\mathbf{x}\in\mathbf{R}^2\\
+					u(\mathbf{p}_i)=0&\color{gray}i=1,\ldots,N\\
+					\cdots
+				\end{cases}
+			\]\\
+			équation de Poisson
+		\end{center}
+	\end{column}
+	\begin{column}{0.5\textwidth}
+		\begin{center}
+			\includegraphics[width=\linewidth]{f/jkpois.png}\\
+			solution~$u$
+		\end{center}
+	\end{column}
+\end{columns}
+
 \end{frame}
 
 % 2. contexte: modèle de poisson pour nuages de points [ref 1]
+\begin{frame}
+POISSON SURFACE RECONSTRUCTION (2005)\\
+=====================================
+
+\vfill
+
+\only<1>{\includegraphics[width=\linewidth]{f/shot_psr.png}}%
+\only<2>{\includegraphics[width=\linewidth]{f/shot_dragon.png}}%
+\only<3>{\includegraphics[width=\linewidth]{f/shot_david.png}}%
+
+\end{frame}
 
 % 3. contexte: solution par dft
 % 4. contexte: solution par méthode numérique itérative multi-échelle
 % 5. contexte: solution par unet-like cnn
+\begin{frame}
+COMMENT RÉSOUDRE L'ÉQUATION DE POISSON?
+=======================================
+
+1. Par Fourier: $Lu=f\ \iff\ \mathcal{F}Lu=\mathcal{F}f$\\
+$\hspace{14em}\color{blue}(\mathcal{F}L)_{p,p}=-p^2$
+
+\pause
+2. Par Gauss-Seidel: \\%(avec ou sans multi-échelle)\\
+\[
+	\begin{cases}
+		u^0 = 0\\
+		u^{n+1}=u^n+\tau\left(\Delta u^n-f\right)
+	\end{cases}
+\]
+
+\pause
+3. Avec un réseau de neurones%
+\includegraphics[align=t,height=0.4\textheight]{f/cshot_sap.png}
+
+\end{frame}
+
+\begin{frame}
+``DIFFERENTIABLE POISSON SOLVER''
+=================================
+
+\vfill
+
+\begin{tabular}{ll}
+	\includegraphics[width=0.46\textwidth]{f/cshot_sap.png}&
+	\includegraphics[width=0.46\textwidth]{f/shot_con.png}
+\end{tabular}
+
+\vfill
+
+Une méthode non-linéaire pour résoudre un problème linéaire (!)
+\vfill
+
+\end{frame}
 
 % 6. objectif du stage: maitriser cette correspoondence, + + +
+\begin{frame}
+OBJECTIF DU STAGE\\
+=================
+
+\begin{tabular}{ccc}
+	\sf\tiny\color{blue} Sparse matrix factorisation &
+	\sf\tiny\color{blue} Multigrid PDE solvers&
+	\sf\tiny\color{blue} U-Net ConvNets\\
+	\includegraphics[width=0.32\linewidth]{f/butterflies.png} &
+	%\includegraphics[width=0.3\linewidth]{f/multigrid.png} &
+	\includegraphics[width=0.32\linewidth]{f/vcycle.png} &
+	\includegraphics[width=0.32\linewidth]{f/cunet.png} \\
+\end{tabular}
+
+{\bf Objectif:} maitriser la corréspondence entre le réseau U-net, les méthodes
+multi-échelle et la factorisation creuse de matrices.
+
+- Le réseau de neurones, est-il vraiment plus rapide?\\
+- Peut-on enlever la non-linéarité du réseau?\\
+- Peut-on ``apprendre'' des factorisations de matrices par cette méthode?
+
+
+\end{frame}
 
 \end{document}
 
