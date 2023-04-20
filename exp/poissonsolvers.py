@@ -5,12 +5,40 @@
 # matrix of the gradient operator for a rectangular domain of size WxH
 def discrete_gradient(h, w):
 	from scipy.sparse import eye, kron, vstack
-	x = eye(w-1, w, 1) - eye(w-1, w)             # path graph of length W
-	y = eye(h-1, h, 1) - eye(h-1, h)             # path graph of length H
-	p = kron(eye(h), x)                          # H horizontal paths
-	q = kron(y, eye(w))                          # W vertical paths
-	B = vstack([p, q])                           # union of all paths
+	x = eye(w-1, w, 1) - eye(w-1, w)    # path graph of length W
+	y = eye(h-1, h, 1) - eye(h-1, h)    # path graph of length H
+	p = kron(eye(h), x)                 # H horizontal paths
+	q = kron(y, eye(w))                 # W vertical paths
+	B = vstack([p, q])                  # union of all paths
 	return B
+
+
+def zoom_out_1d(n):
+	from scipy.sparse import eye, kron
+	P = kron(eye(n//2), [1,1]).tolil()  # identity made of [1,1] blocks
+	k = n//2 + n%2                      # +1 if n is odd (no-op if even)
+	P.resize(k,n)                       # new size (no-op if n is even)
+	P[k-1,n-1] = 1                      # corner=1 (no-op if n is even)
+	return P.tocsr()
+
+
+# matrix of the un-normalized zoom-out operator for a rectangular domain WxH
+# to normalize, multiply it by inv(diags(sum(P)))
+def zoom_out(h, w):
+	from scipy.sparse import kron
+	p = zoom_out_1d(h)
+	q = zoom_out_1d(w)
+	P = kron(p, q)
+	return P
+
+
+def perform_zoom_out(x):
+	P = zoom_out(*x.shape)
+	y = P @ x.flatten()
+	return y.reshape(x.shape[0]//2, x.shape[1]//2)  # TODO: fix odd case
+
+#zoom_out(4,6).A.astype(int)
+
 
 # find an image u such that
 #         Δu = f  where m
@@ -128,4 +156,8 @@ ug = poisson_equation_global(f)
 
 iio.gallery([x,u0,u1,u2,u3,u4,127+0.01*ug])
 
+
+# try zoom out
+y = perform_zoom_out(x)
+iio.gallery([x, y/4])
 
