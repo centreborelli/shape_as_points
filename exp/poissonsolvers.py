@@ -19,25 +19,25 @@ def zoom_out_1d(n):
 	k = n//2 + n%2                      # +1 if n is odd (no-op if even)
 	P.resize(k,n)                       # new size (no-op if n is even)
 	P[k-1,n-1] = 1                      # corner=1 (no-op if n is even)
-	return P.tocsr()
+	return P.tocsr(), k
 
 
 # matrix of the un-normalized zoom-out operator for a rectangular domain WxH
 # to normalize, multiply it by inv(diags(sum(P)))
 def zoom_out(h, w):
 	from scipy.sparse import kron
-	p = zoom_out_1d(h)
-	q = zoom_out_1d(w)
+	p,y = zoom_out_1d(h)
+	q,x = zoom_out_1d(w)
 	P = kron(p, q)
-	return P
+	return P,y,x
 
 
 def perform_zoom_out(x):
-	P = zoom_out(*x.shape)
+	P,h,w = zoom_out(*x.shape)
 	y = P @ x.flatten()
-	return y.reshape(x.shape[0]//2, x.shape[1]//2)  # TODO: fix odd case
+	return y.reshape(h, w)
 
-#zoom_out(4,6).A.astype(int)
+zoom_out(4,6)[0].A.astype(int)
 
 
 # find an image u such that
@@ -114,13 +114,38 @@ def poisson_equation_global(f):
 	u = ifft2(U).real                       # go back to spatial domain
 	return u
 
+
+def poisson_ms_rec(
+		h,  # domain height
+		w,  # domain width
+		f,  # heat source (target laplacian)
+		g,  # boundary condition
+		m,  # mask
+		i,  # initialization
+		τ,  # time step
+		n,  # number of iterations per scale
+		s   # number of scales
+		):
+	u = 0*f
+	if s > 0:
+		P,y,x = zoom_out(h, w)
+		print(f"L.shape={L.shape}")
+		print(f"P.shape={P.shape}")
+		v = poisson_ms_rec(y, x, P@f.flatten(), P@g.flatten(), P@m.flatten(), P@i.flatten(), τ, n, s-1)
+		u = P.T @ v.flatten()
+	return heat_iterations(f.reshape(h,w), g.reshape(h,w), m.reshape(h,w), u.reshape(h,w), τ, n)
+
 # ## Experiments
 
 # read input images
 import iio
-x = iio.read("gbarbsquare.png")[:,:,0]
+x = iio.read("barbsquare.png")[:,:,0]
 m = iio.read("mask.png")[:,:,0]
 iio.gallery([x, 255*m])
+
+y = perform_zoom_out(x)
+
+iio.gallery([x, y/4])
 
 
 # produce data for poisson solver
@@ -152,12 +177,12 @@ u3 = heat_iterations(f, g, m, 127+0*f, 0.24, 100)
 u4 = heat_iterations(f, g, m, 127+0*f, 0.24, 300)
 
 
+B = discrete_gradient(*x.shape)
+L = -B.T @ B
+us = poisson_ms_rec(x.shape[0], x.shape[1], f, g, m, 0*f, 0.12, 10, 1)
+
 ug = poisson_equation_global(f)
 
-iio.gallery([x,u0,u1,u2,u3,u4,127+0.01*ug])
+iio.gallery([x,u0,u1,u2,u3,u4,us,127+0.01*ug])
 
-
-# try zoom out
-y = perform_zoom_out(x)
-iio.gallery([x, y/4])
 
